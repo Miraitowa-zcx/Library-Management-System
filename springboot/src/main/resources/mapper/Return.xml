@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.ReturnMapper">
+
+    <!-- 添加到数据库 -->
+  <insert id="save">
+    insert into `return`(book_name, book_no, user_no, user_name, user_phone, score, days, return_date, real_date, status)
+    values(#{bookName}, #{bookNo}, #{userNo}, #{userName}, #{userPhone}, #{score}, #{days}, #{returnDate}, #{realDate}, #{status})
+  </insert>
+
+    <!-- 从数据库中删除信息 -->
+  <delete id="deleteById">
+    delete from `return` where id = #{id};
+  </delete>
+
+  <!-- 分页模糊查询 -->
+  <select id="listByCondition" resultType="com.example.springboot.entity.Return">
+    select * from `return`
+      <where>
+        <if test="bookName != null and bookName != ''">
+          book_name like concat('%', #{bookName}, '%')
+        </if>
+        <if test="bookNo != null and bookNo != ''">
+          and book_no like concat('%', #{bookNo}, '%')
+        </if>
+        <if test="userName != null and userName != ''">
+         and user_name like concat('%', #{userName}, '%')
+        </if>
+      </where>
+    order by id desc
+  </select>
+</mapper>

@@ -4,7 +4,6 @@ import com.example.springboot.controller.request.BaseRequest;
 import com.example.springboot.controller.request.PasswordRequest;
 import com.example.springboot.entity.Admin;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

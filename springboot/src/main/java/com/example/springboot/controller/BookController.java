@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * 书籍控制器
  *
- * @author 20383
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 @Slf4j
 @CrossOrigin
@@ -31,6 +31,7 @@ import java.util.List;
 public class BookController {
 
     private final IBookService bookService;
+
 
     /**
      * 构造函数，注入书籍服务

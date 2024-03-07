@@ -57,6 +57,8 @@ public class AdminController {
     @PostMapping("/register")
     public Result register(@RequestBody Admin admin) {
         LoginDTO login = adminService.register(admin);
+        // 打印login
+        log.info("login:{}", login);
         return Result.success(login);
     }
 

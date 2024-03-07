@@ -1,60 +1,81 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.springboot.mapper.BookMapper">
 
-  <!-- 分页模糊查询 -->
-  <select id="listByCondition" resultType="com.example.springboot.entity.Book">
-    select * from book
-      <where>
-        <if test="name != null and name != ''">
-          name like concat('%', #{name}, '%')
-        </if>
-        <if test="author != null and author != ''">
-          and author like concat('%', #{author}, '%')
-        </if>
-        <if test="bookNo != null and bookNo != ''">
-          and book_no = #{bookNo}
-        </if>
-      </where>
-    order by id desc
-  </select>
+    <!-- 分页模糊查询 -->
+    <select id="listByCondition" resultType="com.example.springboot.entity.Book">
+        select * from book
+        <where>
+            <if test="name != null and name != ''">
+                name like concat('%', #{name}, '%')
+            </if>
+            <if test="author != null and author != ''">
+                and author like concat('%', #{author}, '%')
+            </if>
+            <if test="bookNo != null and bookNo != ''">
+                and book_no = #{bookNo}
+            </if>
+        </where>
+        order by id desc
+    </select>
 
-  <!-- 添加到数据库 -->
-  <insert id="save">
-    insert into book(name, description, publish_date, author, publisher, category, book_no, cover, score, nums)
-    values(#{name}, #{description}, #{publishDate}, #{author}, #{publisher}, #{category}, #{bookNo}, #{cover}, #{score}, #{nums})
-  </insert>
+    <!-- 添加到数据库 -->
+    <insert id="save">
+        insert into book(name, description, publish_date, author, publisher, category, book_no, cover, score, nums)
+        values (#{name}, #{description}, #{publishDate}, #{author}, #{publisher}, #{category}, #{bookNo}, #{cover},
+                #{score}, #{nums})
+    </insert>
 
-  <!-- 更新信息到数据库 -->
-  <update id="updateById">
-    update book set name = #{name}, description = #{description}, publish_date = #{publishDate}, author = #{author}, publisher = #{publisher},
-                    category = #{category}, book_no = #{bookNo}, cover = #{cover}, updatetime = #{updatetime}, score = #{score}, nums = #{nums} where id = #{id}
-  </update>
+    <!-- 更新信息到数据库 -->
+    <update id="updateById">
+        update book
+        set name         = #{name},
+            description  = #{description},
+            publish_date = #{publishDate},
+            author       = #{author},
+            publisher    = #{publisher},
+            category     = #{category},
+            book_no      = #{bookNo},
+            cover        = #{cover},
+            updatetime   = #{updatetime},
+            score        = #{score},
+            nums         = #{nums}
+        where id = #{id}
+    </update>
 
-  <!-- 还书到数据库 -->
-  <update id="updateNumByNo">
-    update book set nums = nums + 1 where book_no = #{bookNo}
-  </update>
+    <!-- 还书到数据库 -->
+    <update id="updateNumByNo">
+        update book
+        set nums = nums + 1
+        where book_no = #{bookNo}
+    </update>
 
-  <!-- 从数据库中删除信息 -->
-  <delete id="deleteById">
-    delete from book where id = #{id};
-  </delete>
+    <!-- 从数据库中删除信息 -->
+    <delete id="deleteById">
+        delete
+        from book
+        where id = #{id};
+    </delete>
 
-  <!-- 查询所有信息 -->
-  <select id="list" resultType="com.example.springboot.entity.Book">
-    select * from book order by id desc
-  </select>
+    <!-- 查询所有信息 -->
+    <select id="list" resultType="com.example.springboot.entity.Book">
+        select *
+        from book
+        order by id desc
+    </select>
 
-  <!-- 根据id查询信息 -->
-  <select id="getById" resultType="com.example.springboot.entity.Book">
-    select * from book where id = #{id}
-  </select>
+    <!-- 根据id查询信息 -->
+    <select id="getById" resultType="com.example.springboot.entity.Book">
+        select *
+        from book
+        where id = #{id}
+    </select>
 
-  <!-- 根据no查询信息 -->
-  <select id="getByNo" resultType="com.example.springboot.entity.Book">
-      select * from book where book_no = #{id}
-  </select>
+    <!-- 根据no查询信息 -->
+    <select id="getByNo" resultType="com.example.springboot.entity.Book">
+        select *
+        from book
+        where book_no = #{id}
+    </select>
 </mapper>

@@ -1,67 +1,82 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.springboot.mapper.CategoryMapper">
 
-<!-- 自关联查询 -->
-  <resultMap id="categoryMap" type="com.example.springboot.entity.Category">
-    <id column="id" property="id"/>
-    <result column="name" property="name"/>
-    <result column="remark" property="remark"/>
-    <result column="pid" property="pid"/>
-    <result column="createtime" property="createtime"/>
-    <result column="updatetime" property="updatetime"/>
-    <collection property="children" ofType="com.example.springboot.entity.Category" column="id" select="selectByPid"/>
-  </resultMap>
+    <!-- 自关联查询 -->
+    <resultMap id="categoryMap" type="com.example.springboot.entity.Category">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="remark" property="remark" />
+        <result column="pid" property="pid" />
+        <result column="createtime" property="createtime" />
+        <result column="updatetime" property="updatetime" />
+        <collection property="children" ofType="com.example.springboot.entity.Category" column="id"
+            select="selectByPid" />
+    </resultMap>
 
-  <!-- 查询所有pid -->
-  <select id="selectByPid" parameterType="java.lang.Integer" resultType="com.example.springboot.entity.Category">
-    select * from category where pid = #{id} order by id desc
-  </select>
+    <!-- 查询所有pid -->
+    <select id="selectByPid" parameterType="java.lang.Integer" resultType="com.example.springboot.entity.Category">
+        select *
+        from category
+        where pid = #{id}
+        order by id desc
+    </select>
 
- <!-- 分页模糊查询 -->
-  <select id="listByCondition" resultMap="categoryMap">
-    select c1.* from category c1
-    left join category c2
-    on c1.id = c2.pid
-    <where>
-    isnull(c1.pid)
-      <if test="name != null and name != ''">
-        and (c1.name like concat('%', #{ name }, '%') or c2.name like concat('%', #{ name }, '%'))
-      </if>
-    </where>
-    group by c1.id
-    order by c1.id desc
-  </select>
+    <!-- 分页模糊查询 -->
+    <select id="listByCondition" resultMap="categoryMap">
+        select c1.* from category c1
+        left join category c2
+        on c1.id = c2.pid
+        <where>
+            isnull(c1.pid)
+            <if test="name != null and name != ''">
+                and (c1.name like concat('%', #{ name }, '%') or c2.name like concat('%', #{ name }, '%'))
+            </if>
+        </where>
+        group by c1.id
+        order by c1.id desc
+    </select>
 
-  <!-- 添加到数据库 -->
-  <insert id="save">
-    insert into category(name, remark, pid) values(#{name}, #{remark}, #{pid})
-  </insert>
+    <!-- 添加到数据库 -->
+    <insert id="save">
+        insert into category(name, remark, pid)
+        values (#{name}, #{remark}, #{pid})
+    </insert>
 
-  <!-- 更新信息到数据库 -->
-  <update id="updateById">
-    update category set name = #{name}, remark = #{remark}, updatetime = #{updatetime} where id = #{id}
-  </update>
+    <!-- 更新信息到数据库 -->
+    <update id="updateById">
+        update category
+        set name       = #{name},
+            remark     = #{remark},
+            updatetime = #{updatetime}
+        where id = #{id}
+    </update>
 
-  <!-- 从数据库中删除信息 -->
-  <delete id="deleteById">
-    delete from category where id = #{id};
-  </delete>
+    <!-- 从数据库中删除信息 -->
+    <delete id="deleteById">
+        delete
+        from category
+        where id = #{id};
+    </delete>
 
-  <!-- 查询所有信息 -->
-  <select id="list" resultType="com.example.springboot.entity.Category">
-    select * from category order by id desc
-  </select>
+    <!-- 查询所有信息 -->
+    <select id="list" resultType="com.example.springboot.entity.Category">
+        select *
+        from category
+        order by id desc
+    </select>
 
-  <!-- 根据id查询用户信息 -->
-  <select id="getById" resultType="com.example.springboot.entity.Category">
-    select * from category where id = #{id}
-  </select>
+    <!-- 根据id查询用户信息 -->
+    <select id="getById" resultType="com.example.springboot.entity.Category">
+        select *
+        from category
+        where id = #{id}
+    </select>
 
-  <!-- 递归查询 -->
-  <select id="treeList" resultType="com.example.springboot.entity.Category">
-    select id, pid, `name` from category
-  </select>
+    <!-- 递归查询 -->
+    <select id="treeList" resultType="com.example.springboot.entity.Category">
+        select id, pid, `name`
+        from category
+    </select>
 </mapper>

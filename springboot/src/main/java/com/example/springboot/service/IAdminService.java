@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 管理员服务接口
  *
- * @author 20383
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 public interface IAdminService {
 

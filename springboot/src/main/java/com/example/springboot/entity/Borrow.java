@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * 借阅实体类，继承BaseEntity
  *
- * @author 20383
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

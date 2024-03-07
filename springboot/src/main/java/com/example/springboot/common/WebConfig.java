@@ -13,13 +13,21 @@ import java.util.List;
 /**
  * springboot整合webmvc
  *
- * @author 20383
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+    /**
+     * 自定义拦截器JwtInterceptor
+     */
     private final JwtInterceptor jwtInterceptor;
 
+    /**
+     * 依赖注入
+     *
+     * @param jwtInterceptor jwt拦截器
+     */
     @Autowired
     public WebConfig(JwtInterceptor jwtInterceptor) {
         this.jwtInterceptor = jwtInterceptor;
@@ -27,6 +35,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 配置路径匹配规则
+     *
      * @param configurer 路径匹配配置
      */
     @Override
@@ -37,6 +46,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 加自定义拦截器JwtInterceptor，设置拦截规则
+     *
      * @param registry 拦截器注册
      */
     @Override

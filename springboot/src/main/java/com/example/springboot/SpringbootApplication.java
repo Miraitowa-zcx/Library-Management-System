@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Springboot启动程序
  *
- * @author 20383
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 @RestController
 @SpringBootApplication

@@ -2,16 +2,14 @@ package com.example.springboot.mapper;
 
 import com.example.springboot.controller.request.BaseRequest;
 import com.example.springboot.entity.Return;
-import com.example.springboot.mapper.po.BorrowReturnCountPo;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
  * 还书映射器接口
  *
- * @author 20383
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 @Mapper
 public interface ReturnMapper {

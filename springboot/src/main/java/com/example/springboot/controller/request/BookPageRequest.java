@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 /**
  * 书籍页面请求类，继承BaseRequest
  *
- * @author 20383
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

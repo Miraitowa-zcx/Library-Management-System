@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 基本请求类
  *
- * @author 20383
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 @Data
 public class BaseRequest {

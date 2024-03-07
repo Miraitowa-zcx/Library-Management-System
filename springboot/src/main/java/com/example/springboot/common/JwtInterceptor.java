@@ -19,14 +19,20 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * JWT拦截器
  *
- * @author 20383
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 @Component
 @Slf4j
 public class JwtInterceptor implements HandlerInterceptor {
 
+    /**
+     * Token 错误码 401
+     */
     private static final String ERROR_CODE_401 = "401";
 
+    /**
+     * IAdminService 实例
+     */
     private final IAdminService adminService;
 
     /**

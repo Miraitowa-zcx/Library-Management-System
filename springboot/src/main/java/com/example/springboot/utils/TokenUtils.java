@@ -18,34 +18,70 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * @author 20383
+ * Token 工具类
+ *
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 @Component
 @Slf4j
 public class TokenUtils {
 
+    /**
+     * 管理员服务
+     */
     private static IAdminService staticAdminService;
 
+    /**
+     * 注入管理员服务
+     */
     @Resource
     private IAdminService adminService;
 
+    /**
+     * 初始化
+     */
     @PostConstruct
     public void setUserService() {
         staticAdminService = adminService;
     }
 
+    /**
+     * 生成 Token
+     *
+     * @param adminId 管理员 ID
+     * @param sign    签名
+     * @return token
+     */
     public static String genToken(String adminId, String sign) {
-        return JWT.create().withAudience(adminId)       // 将 user id 保存到 token 里面,作为载荷
-                .withExpiresAt(DateUtil.offsetHour(new Date(), 2))      // 2小时后token过期
-                .sign(Algorithm.HMAC256(sign));      // 以 password 作为 token 的密钥
+
+        return
+                // 将 user id 保存到 token 里面,作为载荷
+                JWT.create().withAudience(adminId)
+                        // 2小时后token过期
+                        .withExpiresAt(DateUtil.offsetHour(new Date(), 2))
+                        // 以 password 作为 token 的密钥
+                        .sign(Algorithm.HMAC256(sign));
     }
 
+    /**
+     * 生成 Token
+     *
+     * @param adminId 管理员 ID
+     * @param sign    签名
+     * @param days    Token 过期时间
+     * @return Token
+     */
     public static String genToken(String adminId, String sign, int days) {
-        return JWT.create().withAudience(adminId)       // 将 user id 保存到 token 里面,作为载荷
-                .withExpiresAt(DateUtil.offsetDay(new Date(), days))      // 2小时后token过期
-                .sign(Algorithm.HMAC256(sign));      // 以 password 作为 token 的密钥
+        return JWT.create().withAudience(adminId)
+                .withExpiresAt(DateUtil.offsetDay(new Date(), days))
+                .sign(Algorithm.HMAC256(sign));
     }
 
+    /**
+     * 获取当前登录的管理员信息
+     *
+     * @return 管理员信息
+     */
     public static Admin getCurrentAdmin() {
         String token = null;
         try {
@@ -61,7 +97,7 @@ public class TokenUtils {
             String adminId = JWT.decode(token).getAudience().get(0);
             return staticAdminService.getById(Integer.valueOf(adminId));
         } catch (Exception e) {
-            log.error("获取当前登录的管理员信息失败, token={}", token,  e);
+            log.error("获取当前登录的管理员信息失败, token={}", token, e);
             return null;
         }
     }

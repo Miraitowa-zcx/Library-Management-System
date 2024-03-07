@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 管理员控制器
  *
- * @author 20383
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 @Slf4j
 @CrossOrigin

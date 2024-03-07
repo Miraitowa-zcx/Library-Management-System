@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 /**
  * 基础实体类，用于存储实体对象的基本信息
  *
- * @author  jishu: 20383<br/>20383
+ * @author  <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  *
  */
 @Data

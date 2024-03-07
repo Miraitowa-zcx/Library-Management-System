@@ -5,21 +5,34 @@ import lombok.Data;
 /**
  * 统一返回对象
  *
- * @author 20383
+ * @author <a href="mailto:2038322151@qq.com">Miraitowa_zcx</a>
  */
 @Data
 public class Result {
 
-    // 成员变量-成功状态码
+    /**
+     * 成员变量-成功状态码
+     */
     private static final String SUCCESS_CODE = "200";
-    // 成员变量-错误状态码
+
+    /**
+     * 成员变量-错误状态码
+     */
     private static final String ERROR_CODE = "-1";
 
-    // 成员变量-状态码
+    /**
+     * 成员变量-状态码
+     */
     private String code;
-    // 成员变量-数据
+
+    /**
+     * 成员变量-数据
+     */
     private Object data;
-    // 成员变量-消息
+
+    /**
+     * 成员变量-消息
+     */
     private String msg;
 
     /**
